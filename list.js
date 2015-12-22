@@ -15,10 +15,11 @@ jQuery(function($) {
           Size: item.find('Size').text(),
         }
       });
-      renderTable(files);
+      //renderTable(files);
+      console.log(files);
     })
     .fail(function(error) {
-      alert('There was an error');
+      //alert('There was an error');
       console.log(error);
     });
 });
