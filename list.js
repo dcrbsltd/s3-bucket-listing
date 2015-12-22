@@ -25,7 +25,7 @@ jQuery(function($) {
 function getS3Data(marker, html) {
   var s3_rest_url = createS3QueryUrl(marker);
   // set loading notice
-  $('#listing').html('<img src="//assets.okfn.org/images/icons/ajaxload-circle.gif" />');
+  // $('#listing').html('<img src="//assets.okfn.org/images/icons/ajaxload-circle.gif" />');
   $.get(s3_rest_url)
     .done(function(data) {
       // clear loading notice
@@ -36,7 +36,7 @@ function getS3Data(marker, html) {
       if (info.nextMarker != "null") {
         getS3Data(info.nextMarker, html);
       } else {
-        document.getElementById('listing').innerHTML = '<pre>' + html + '</pre>';
+        document.getElementById('listing').innerHTML = html;
       }
     })
     .fail(function(error) {
@@ -135,7 +135,7 @@ function prepareTable(info) {
   content.push(new Array(cols[0] + cols[1] + cols[2] + 4).join('-') + '\n');
 
   // add the ../ at the start of the directory listing
-  if (prefix) {
+  /* if (prefix) {
     var up = prefix.replace(/\/$/, '').split('/').slice(0, -1).concat('').join('/'), // one directory up
       item = {
         Key: up,
@@ -146,7 +146,7 @@ function prepareTable(info) {
       },
       row = renderRow(item, cols);
     content.push(row + '\n');
-  }
+  } */
 
   jQuery.each(files, function(idx, item) {
     // strip off the prefix
