@@ -32,6 +32,7 @@ function getS3Data(marker, html) {
       $('#listing').html('');
       var xml = $(data);
       var info = getInfoFromS3Data(xml);
+      console.log(info);
       html = typeof html !== 'undefined' ? html + prepareTable(info) : prepareTable(info);
       if (info.nextMarker != "null") {
         getS3Data(info.nextMarker, html);
