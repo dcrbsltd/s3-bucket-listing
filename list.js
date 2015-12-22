@@ -29,20 +29,26 @@ function getS3Data(marker, html) {
   $.get(s3_rest_url)
     .done(function(data) {
       // clear loading notice
-      $('#listing').html('');
+      // $('#listing').html('');
       var xml = $(data);
       var info = getInfoFromS3Data(xml);
+      var files = info.files.concat(info.directories)
+        , prefix = info.prefix
+      ;
       console.log(info);
-      html = typeof html !== 'undefined' ? html + prepareTable(info) : prepareTable(info);
+      console.log(files);
+      console.log(prefix);
+      /* html = typeof html !== 'undefined' ? html + prepareTable(info) : prepareTable(info);
       if (info.nextMarker != "null") {
         getS3Data(info.nextMarker, html);
       } else {
         document.getElementById('listing').innerHTML = html;
-      }
+      } 
+      */
     })
     .fail(function(error) {
       console.error(error);
-      $('#listing').html('<strong>Error: ' + error + '</strong>');
+      // $('#listing').html('<strong>Error: ' + error + '</strong>');
     });
 }
 
